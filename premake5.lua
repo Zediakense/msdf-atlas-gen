@@ -37,14 +37,23 @@ project "msdf-atlas-gen"
 		systemversion "latest"
 
 	filter "configurations:Debug"
+		if _ACTION == "vs2022" then
+			buildoptions "/MTd"
+		end
 		runtime "Debug"
 		symbols "on"
 
 	filter "configurations:Release"
+		if _ACTION == "vs2022" then
+			buildoptions "/MT"
+		end
 		runtime "Release"
 		optimize "on"
 
 	filter "configurations:Dist"
+		if _ACTION == "vs2022" then
+			buildoptions "/MT"
+		end
 		runtime "Release"
 		optimize "on"
         symbols "off"
